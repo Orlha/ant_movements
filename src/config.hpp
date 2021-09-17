@@ -1,5 +1,6 @@
 #pragma once
 #include <stack>
+#include <queue>
 
 namespace config {
 // Tiles whose weight is above this value can't be visited;
