@@ -1,10 +1,10 @@
 # ant_movements
 
-Requirements: C++20-capable compiler
+**Requirements**: C++20-capable compiler
 
-Requirements for rendering: SFML
+**Dependencies** for rendering: SFML
 
-Building:
+**Building:**
 
 mkdir build
 
@@ -16,7 +16,7 @@ make
 
 
 
-Building with rendering:
+**Building with rendering:**
 
 mkdir build
 
@@ -28,6 +28,6 @@ make
 
 
 
-Launch:
+**Launch:**
 
 ./bin/ant_movements
