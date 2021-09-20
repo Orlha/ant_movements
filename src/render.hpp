@@ -12,7 +12,6 @@ class Render {
 		window.clear(sf::Color::Black);
 		window.setFramerateLimit(60);
 		window.display();
-		//window.setActive(false);
 	}
 	void process() {
 		while (window.isOpen()) {
@@ -23,26 +22,31 @@ class Render {
 				}
 			}
 			window.clear();
+			auto draw_shapes = [&] (auto& shape, auto& positions) {
+				for(auto position: positions) {
+					shape.setPosition(sf::Vector2f(
+							config::block_size * (position.x - (config::starting_x - 5)),
+							config::block_size * (position.y - (config::starting_x - 5))
+					));
+					window.draw(shape);
+				}
+			};
+			sf::RectangleShape shape(sf::Vector2f(config::block_size, config::block_size));
+
+			shape.setFillColor(sf::Color(100, 250, 50));
 			auto points = [&] {
 				std::lock_guard l { m };
 				return good_points;
 			} ();
-			for(auto position: points) {
-				sf::RectangleShape shape(sf::Vector2f(config::block_size, config::block_size));
-				shape.setFillColor(sf::Color(100, 250, 50));
-				shape.setPosition(sf::Vector2f(config::block_size * (position.x - 995), config::block_size * (position.y - 995)));
-				window.draw(shape);
-			}
+			draw_shapes(shape, points);
+
+			shape.setFillColor(sf::Color(250, 50, 50));
 			points = [&] {
 				std::lock_guard l { m };
 				return bad_points;
 			} ();
-			for(auto position: points) {
-				sf::RectangleShape shape(sf::Vector2f(config::block_size, config::block_size));
-				shape.setFillColor(sf::Color(250, 50, 50));
-				shape.setPosition(sf::Vector2f(config::block_size * (position.x - 995), config::block_size * (position.y - 995)));
-				window.draw(shape);
-			}
+			draw_shapes(shape, points);
+
 			window.display();
 		}
 	}
