@@ -6,25 +6,19 @@
 
 **Building:**
 
-mkdir build
-
-cd build
-
-cmake ..
-
-make
+* mkdir build
+* cd build
+* cmake ..
+* make
 
 
 
 **Building with rendering:**
 
-mkdir build
-
-cd build
-
-cmake -DRENDER=1 ..
-
-make
+* mkdir build
+* cd build
+* cmake -DRENDER=1 ..
+* make
 
 
 
